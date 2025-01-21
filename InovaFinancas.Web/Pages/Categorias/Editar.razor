@@ -1,0 +1,43 @@
+﻿@page "/categorias/editar/{Id}"
+@inherits EditarPage
+
+
+<MudText Typo="Typo.h3">Editar Categoria</MudText>
+
+@if (IsBusy)
+{
+	<MudPaper Class="pa-8 mt-4">
+		<MudSkeleton Height="55px"></MudSkeleton>
+		<MudSkeleton Height="110px"></MudSkeleton>
+		<MudSkeleton Height="80px"></MudSkeleton>
+		<MudSkeleton Height="90px"></MudSkeleton>
+		<MudSkeleton Height="20px"></MudSkeleton>
+	</MudPaper>
+}
+else
+{
+	<MudPaper Class="pa-8 mt-4">
+		<EditForm Model="@inputModel" OnValidSubmit="OnValidSubmitAsync">
+			<DataAnnotationsValidator />
+			<MudTextField Label="Título" HelperText="Campo obrigatório" @bind-Value=inputModel.Titulo
+						  For="@(()=> inputModel.Titulo)" />
+
+			<MudTextField Label="Descrição" Lines="5" HelperText="Campo obrigatório"
+						  @bind-Value=inputModel.Descricao
+						  For="@(()=> inputModel.Descricao)" />
+			<div class="d-flex mt-8">
+				@if (IsBusy)
+				{
+					<MudProgressCircular Color="Color.Info" Indeterminate="true" />
+				}
+				else
+				{
+					<MudButton ButtonType="ButtonType.Submit"
+							   Variant="Variant.Filled" Color="Color.Primary">Salvar</MudButton>
+				}
+			</div>
+
+		</EditForm>
+
+	</MudPaper>
+}

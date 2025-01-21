@@ -1,0 +1,46 @@
+﻿@page "/pedido/{numero}"
+@inherits DetalhesPedidoPage
+
+<h1>Detalhe do pedido</h1>
+<br/>
+@if(Pedido is not null)
+{
+	<h4>Numero do Pedido</h4>
+	<p>@Pedido.Numero</p>
+	<br/>
+	<h4>Data do pedido</h4>
+	<p>@Pedido.DataCadastro.ToString("dd/MM/yyyy 00:00:00")</p>
+	<br />
+	<h4>Ultima Atualização</h4>
+	<p>@Pedido.DataAlteracao.ToString("dd/MM/yyyy 00:00:00")</p>
+	<br />
+	<h4>Produto</h4>
+	<p>@Pedido.Produto.Titulo</p>
+	<br />
+	<h4>Valor do Produto</h4>
+	<p>@Pedido.Produto.Valor.ToString("C")</p>
+	<br />
+	<h4>Desconto</h4>
+	<p>@(Pedido.Voucher is null ? "Não aplicado" : Pedido.Voucher.Valor.ToString("C"))</p>
+	<br />
+	<h4>Valor Total</h4>
+	<p>@Pedido.Total</p>
+		<br />
+		<h4>Situacao</h4>
+		<PedidoEstado EstadoPedido="Pedido.Estado"></PedidoEstado>
+		<br />
+		<br />
+		<br />
+	<CascadingValue Value="this">
+		<PedidoAcoes Pedido="Pedido"></PedidoAcoes>
+	</CascadingValue>
+}
+else
+	{
+		<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+		<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+		<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+		<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+		<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+	 
+	}

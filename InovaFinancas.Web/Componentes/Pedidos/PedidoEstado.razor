@@ -1,0 +1,21 @@
+﻿	@inherits PedidoEstadoComponet
+
+@switch (EstadoPedido)
+{
+	case EEstadoPedido.Cancelado:
+	<MudChip T="string" Color="Color.Error">Cancelado</MudChip>
+	break;
+	case EEstadoPedido.AguardandoPagamento:
+		<MudChip T="string" Color="Color.Warning">Aguardando Pagamento</MudChip>
+	break;
+	case EEstadoPedido.Pago:
+		<MudChip T="string" Color="Color.Success">Pago</MudChip>
+	break;
+	case EEstadoPedido.Estornado:
+		<MudChip T="string" Color="Color.Info">Estornado</MudChip>
+		break;
+	default:
+		<MudChip T="string" Color="Color.Info">Não definito</MudChip>
+		break;
+
+}

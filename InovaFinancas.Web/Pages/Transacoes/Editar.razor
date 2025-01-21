@@ -1,0 +1,55 @@
+﻿@page "/lancamentos/editar/{Id}"
+@inherits EditarTransacaoPage
+
+<MudText Typo="Typo.h3">Editar lançamento</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+	<EditForm Model="@inputModel" OnValidSubmit="OnValidSubmitAsync">
+		<DataAnnotationsValidator />
+		<MudTextField Label="Título" HelperText="Campo obrigatório" @bind-Value=inputModel.Titulo
+					  For="@(()=> inputModel.Titulo)" />
+
+		<MudTextField Label="Valor" HelperText="Informe o valor do lançamento" T="decimal"
+					  Variant="Variant.Text"
+					  @bind-Value=inputModel.Valor Format="C"
+					  For="@(()=> inputModel.Valor)" />
+
+		<MudDatePicker Label="Data" HelperText="Data do lançamento"
+					   @bind-Date=inputModel.DataRecebimento />
+
+
+		<MudSelect T="ETransacaoTipo" Variant="Variant.Text" Label="Tipo Movimentação"
+				   @bind-Value="inputModel.Tipo"
+				   AnchorOrigin="Origin.BottomCenter" ReadOnly="false">
+			<MudSelectItem T="ETransacaoTipo" Value="ETransacaoTipo.Entrada">Entrada</MudSelectItem>
+			<MudSelectItem T="ETransacaoTipo" Value="ETransacaoTipo.Saida">Saída</MudSelectItem>
+		</MudSelect>
+
+		<MudSelect T="long" Label="Categoria" @bind-Value="inputModel.CategoriaId" AnchorOrigin="Origin.BottomCenter">
+			@foreach (var item in Categorias)
+			{
+				<MudSelectItem T="long" Value="@item.Id">@item.Titulo</MudSelectItem>
+			}
+		</MudSelect>
+
+
+
+		<div class="d-flex mt-8">
+			<MudButton ButtonType="ButtonType.Submit"
+					   Variant="Variant.Filled" Color="Color.Primary">Salvar</MudButton>
+
+
+			@* @if (IsBusy)
+			{
+			<MudProgressCircular Color="Color.Info" Indeterminate="true" />
+			}
+			else
+			{
+			<MudButton ButtonType="ButtonType.Submit"
+			Variant="Variant.Filled" Color="Color.Primary">Salvar</MudButton>
+			} *@
+		</div>
+
+	</EditForm>
+
+</MudPaper>

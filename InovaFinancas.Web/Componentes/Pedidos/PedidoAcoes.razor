@@ -1,0 +1,20 @@
+﻿@inherits PedidoAcoesComponet
+
+@switch (Pedido.Estado)
+{
+	case EEstadoPedido.Pago:
+		<MudButton FullWidth="true" Color="Color.Warning" Variant="Variant.Outlined" Size="Size.Large" 
+				OnClick="OnEstornarPedidoAsync">Solicitar Estorno</MudButton>
+		break;
+	case EEstadoPedido.AguardandoPagamento:
+		<MudButton class="mb-4" FullWidth="true" Color="Color.Success" Variant="Variant.Filled" 
+				Size="Size.Large" OnClick="OnPagarPedidoAsync">Pagar com Stripe</MudButton>
+				
+		<MudButton class="mb-4" FullWidth="true" Color="Color.Error" Variant="Variant.Outlined" OnClick="OnCancelarPedidoAsync"
+				Size="Size.Large">Cancelar o Pedido</MudButton>
+		break;
+
+	default:
+		<MudText></MudText>
+		break;
+}

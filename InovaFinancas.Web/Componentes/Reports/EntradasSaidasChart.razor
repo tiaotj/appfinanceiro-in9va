@@ -1,0 +1,17 @@
+﻿@inherits EntradasSaidasChartPage
+
+@if (Series is not null)
+{
+	<MudChart ChartType="ChartType.Line"
+			ChartOptions="Options" 
+			ChartSeries="Series" XAxisLabels="Labels.ToArray()"
+			CanHideSeries="true" Width="100%" Height="350px">
+
+	</MudChart>
+}
+else
+{
+	<div class="d-flex align-center justify-content" style="height: 350px">
+		<MudProgressCircular Indeterminate="true" Color="Color.Primary"></MudProgressCircular>
+	</div>
+}

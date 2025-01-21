@@ -1,0 +1,26 @@
+﻿@page "/pedido/{numero}/confirmar"
+
+@inherits	ConfirmarPage
+
+
+@if(Pedido is not null)
+{
+	if(Pedido.Estado == EEstadoPedido.Pago)
+	{
+		<h1>Pedido confirmado com sucesso</h1>
+		<p>Parabéns, Agora vc é premium e tem acesso completo ao sistema</p>
+	}
+	else
+	{
+		<h1>Ops, algo deu errado</h1>
+		<p>Pagamento não processado!!!</p>
+	}
+}
+else
+{
+	
+	<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+	<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+	<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+	<MudSkeleton Animation="Animation.Wave"></MudSkeleton>
+}

@@ -1,0 +1,28 @@
+﻿@page "/categorias/adicionar"
+@inherits CreateCategoriaPage
+
+<MudText Typo="Typo.h3">Nova Categoria</MudText>
+<MudPaper Class="pa-8 mt-4">
+	<EditForm Model="@inputModel" OnValidSubmit="OnValidSubmitAsync">
+		<DataAnnotationsValidator />
+		<MudTextField Label="Título" HelperText="Campo obrigatório" @bind-Value=inputModel.Titulo
+					  For="@(()=> inputModel.Titulo)" />
+
+		<MudTextField Label="Descrição" Lines="5" HelperText="Campo obrigatório"
+					  @bind-Value=inputModel.Descricao
+					  For="@(()=> inputModel.Descricao)" />
+		<div class="d-flex mt-8">
+			@if (IsBusy)
+			{
+			<MudProgressCircular Color="Color.Info" Indeterminate="true" />
+			}
+			else
+			{
+			<MudButton ButtonType="ButtonType.Submit"
+					   Variant="Variant.Filled" Color="Color.Primary">Salvar</MudButton>
+			}
+		</div>
+
+	</EditForm>
+
+</MudPaper>

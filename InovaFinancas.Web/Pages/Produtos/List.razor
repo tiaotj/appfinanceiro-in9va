@@ -1,0 +1,40 @@
+﻿@page "/premium"
+@inherits ListProdutoPage
+
+<MudContainer Class="mt-16">
+	<MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Premium</MudText>
+	<MudText Align="Align.Center">Tenha acesso ilimitado, incluindo transação limitado</MudText>
+	<MudGrid Class="mt-8 justify-center">
+		@foreach (var item in Produtos)
+		{
+			<MudItem xs="12" sm="6" md="4">
+
+				<MudCard Elevation="5" class="rounded-lg pb-4">
+					<MudCardHeader>
+						<CardHeaderContent>
+							<MudText Typo="Typo.h5" Align="Align.Center">@item.Titulo</MudText>
+						</CardHeaderContent>
+					</MudCardHeader>
+
+					<MudCardContent>
+						<div class="d-flex justify-center">
+							<MudText Typo="Typo.h3">
+								@item.Valor.ToString("C")
+							</MudText>
+						</div>
+						<MudList T="string" class="mx-auto mt-4" Style="width: 300px">
+							<MudListItem Icon="@Icons.Material.Filled.Check">Transações Ilimitadas</MudListItem>
+							<MudListItem Icon="@Icons.Material.Filled.Check">Categorias Ilimitadas</MudListItem>
+							<MudListItem Icon="@Icons.Material.Filled.Check">Acesso Completo</MudListItem>
+						</MudList>
+					</MudCardContent>
+					<MudCardActions class="d-flex justify-center">
+						<MudButton Href="@($"/checkout/{item.Slug}")" Variant="Variant.Filled" Color="Color.Success" Size="Size.Large">Começar Agora</MudButton>
+					</MudCardActions>
+				</MudCard>
+				
+			</MudItem>
+		}
+
+	</MudGrid>
+</MudContainer>

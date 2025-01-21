@@ -1,0 +1,55 @@
+﻿@inherits ResumoFinanceiroChartpag
+
+<MudCardHeader>
+	<MudCardHeader >
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6"> Resumo Financeiro</MudText>
+		</CardHeaderContent>
+		<CardHeaderActions  >
+			<MudIconButton Class="justify-content-end ml-4" Icon="@(ShowValues ? Icons.Material.TwoTone.VisibilityOff :
+						Icons.Material.TwoTone.Visibility)" OnClick="AlternaShowValues">
+			</MudIconButton>
+		</CardHeaderActions>
+		
+	</MudCardHeader>
+	
+	
+</MudCardHeader>
+<p>
+	<strong>SALDO</strong>
+</p>
+@if (Resumo is null)
+{
+	<div class="d-flex align-center justify-content" style="height: 350px">
+		<MudProgressCircular Indeterminate="true" Color="Color.Primary"></MudProgressCircular>
+	</div>
+}
+else
+{
+	@if (Resumo.Total > 0)
+	{
+		<MudText Typo="Typo.h3" Color="Color.Success">
+			@(ShowValues ? Resumo.Total.ToString("C") : "R$ *****,**")
+		</MudText>
+	}
+	else
+	{
+		<MudText Color="Color.Error">
+			@(ShowValues ? Resumo.Total.ToString("C") : "R$ *****,**")
+		</MudText>
+	}
+	<br />
+	<p>
+		<strong>Entradas</strong>
+		<MudText Color="Color.Success">
+			@(ShowValues ? Resumo.Entradas.ToString("C") : "R$ *****,***")
+		</MudText>
+	</p>
+	<br />
+	<p>
+		<strong>Saídas</strong>
+		<MudText Color="Color.Error">
+			@(ShowValues ? Resumo.Saidas.ToString("C") : "R$ *****,***")
+		</MudText>
+	</p>
+}
